@@ -1,16 +1,16 @@
-name: Expression Demo
+name: Run on Tag
 
-on: [push]
+on:
+  push:
+    tags:
+      - "v*"   # Triggers only when a tag like v1.0, v2.0 is pushed
 
 jobs:
-  conditional-job:
+  run-hello:
     runs-on: ubuntu-latest
     steps:
-      - name: Run always
-        run: echo "This runs always!"
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Run only on dev1 branch
-        if: github.ref == 'refs/heads/dev1'
-        run: echo "This runs only on main branch 1"
-        
-        
+      - name: Run Hello Script
+        run: python hello.py
