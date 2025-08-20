@@ -1,11 +1,12 @@
-name: Scheduled Workflow
+name: Minute-by-Minute Workflow
 
 on:
   schedule:
-    - cron: "* * * * *"   # every day at midnight UTC
+    - cron: "* * * * *"   # every minute
+  workflow_dispatch:
 
 jobs:
   backup:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Running nightly job at midnight"
+      - run: echo "Running job every minute"
