@@ -11,5 +11,6 @@ jobs:
 
       - name: Run only on dev1 branch
         if: github.ref == 'refs/heads/dev1'
-        run: echo "This runs only on main branch"
+        run: echo "This runs only on main branch 1"
+        
         
