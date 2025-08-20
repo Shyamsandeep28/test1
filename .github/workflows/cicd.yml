@@ -1,20 +1,14 @@
-name: Inputs and Outputs Lab
+name: Expression Demo
 
-on:
-  workflow_dispatch:
-    inputs:
-      username:
-        description: "Enter your name"
-        required: true
-        default: "Guest"
+on: [push]
 
 jobs:
-  greet:
+  conditional-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Save Greeting
-        id: step1
-        run: echo "greet_msg=Hello ${{ github.event.inputs.username }} 🎉" >> $GITHUB_OUTPUT
+      - name: Run always
+        run: echo "This runs always!"
 
-      - name: Use Greeting
-        run: echo "Final message is:${{ steps.step1.outputs.greet_msg }}"
+      - name: Run only on main branch
+        if: github.ref == 'refs/heads/main'
+        run: echo "This runs only on main branch"
