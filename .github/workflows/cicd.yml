@@ -1,8 +1,6 @@
 name: Scheduled Workflow
 
-on:
-  schedule:
-    - cron: "* * * * *"   # every day at midnight UTC
+on: push
 
 jobs:
   backup:
