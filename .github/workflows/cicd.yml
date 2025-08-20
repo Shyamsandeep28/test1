@@ -1,0 +1,11 @@
+name: Scheduled Workflow
+
+on:
+  schedule:
+    - cron: "* * * * *"   # every day at midnight UTC
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Running the job every minute"
