@@ -1,12 +1,26 @@
-name: Minute-by-Minute Workflow
+name: Inputs and Outputs Demo
 
 on:
-  schedule:
-    - cron: "* * * * *"   # every minute
   workflow_dispatch:
+    inputs:
+      username:
+        description: "Enter your name"
+        required: true
+        default: "Sandeep"
 
 jobs:
-  backup:
+  first-job:
     runs-on: ubuntu-latest
+    outputs:
+      custom-message: ${{ steps.greeting.outputs.msg }}
     steps:
-      - run: echo "Running job every minute"
+      - name: Generate message
+        id: greeting
+        run: echo "msg=Welcome ${{ github.event.inputs.username }} 🎉" >> $GITHUB_OUTPUT
+
+  second-job:
+    runs-on: ubuntu-latest
+    needs: first-job
+    steps:
+      - name: Use output from first job
+        run: echo "Message from first-job: ${{ needs.first-job.outputs.custom-message }}"
