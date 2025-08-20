@@ -9,6 +9,6 @@ jobs:
       - name: Run always
         run: echo "This runs always!"
 
-      - name: Run only on main branch
-        if: github.ref == 'refs/heads/main'
+      - name: Run only on dev branch
+        if: github.ref == 'refs/heads/dev1'
         run: echo "This runs only on main branch"
