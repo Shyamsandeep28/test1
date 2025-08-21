@@ -8,10 +8,10 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Create directory
-        run: sudo mkdir -p /home/runner-test/demo-dir
+        run: sudo mkdir -p /home/runner-test/demo-dir1
 
       - name: Create file with content
-        run: sudo echo "This file was created by GitHub Actions on self-hosted runner" > /home/runner-test/demo-dir/hello.txt
+        run: echo "This file was created by GitHub Actions on self-hosted runner" > /home/runner-test/demo-dir1/hello.txt
 
       - name: Display file content
-        run: cat /home/runner-test/demo-dir/hello.txt
+        run: cat /home/runner-test/demo-dir1/hello.txt
