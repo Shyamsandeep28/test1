@@ -1,27 +1,11 @@
-name: Deploy with Environments
+name: Hello Pipeline
 
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:   # allows manual trigger
 
 jobs:
-  deploy-staging:
-    runs-on: ubuntu-latest
-    environment: staging
+  say-hello:
+    runs-on: [self-hosted, ip-10-0-6-171]   # use your self-hosted runner
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Print Staging Environment
-        run: echo "Deploying to STAGING with API_KEY=${{ secrets.API_KEY }}"
-
-  deploy-production:
-    runs-on: ubuntu-latest
-    environment: production
-    needs: deploy-staging
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Print Production Environment
-        run: echo "Deploying to PRODUCTION with API_KEY=${{ secrets.API_KEY }}"
+      - name: Print Hello
+        run: echo "Hello from my self-hosted runner (ip-10-0-6-171)!"
