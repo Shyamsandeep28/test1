@@ -1,11 +1,17 @@
-name: Hello Pipeline
+name: Directory and File Creation
 
 on:
-  workflow_dispatch:   # allows manual trigger
+  workflow_dispatch:
 
 jobs:
-  say-hello:
+  create-dir-file:
     runs-on: self-hosted
     steps:
-      - name: Print Hello
-        run: echo "Hello from my self-hosted runner (ip-10-0-6-171)!"
+      - name: Create directory
+        run: mkdir -p /home/runner-test/demo-dir
+
+      - name: Create file with content
+        run: echo "This file was created by GitHub Actions on self-hosted runner" > /home/runner-test/demo-dir/hello.txt
+
+      - name: Display file content
+        run: cat /home/runner-test/demo-dir/hello.txt
