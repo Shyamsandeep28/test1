@@ -5,7 +5,7 @@ on:
 
 jobs:
   say-hello:
-    runs-on: [self-hosted, ip-10-0-6-171]   # use your self-hosted runner
+    runs-on: self-hosted
     steps:
       - name: Print Hello
         run: echo "Hello from my self-hosted runner (ip-10-0-6-171)!"
