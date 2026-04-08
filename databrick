@@ -1,0 +1,31 @@
+
+Lab 1: Use Databrick model using Langchain Model
+
+%pip install --upgrade langchain langchain-community databricks-sdk
+%pip install langchain==0.1.17 langchain-community==0.0.38
+dbutils.library.restartPython()
+
+
+from langchain_community.chat_models import ChatDatabricks
+from langchain.chains.llm import LLMChain
+from langchain_core.prompts import PromptTemplate
+
+llm = ChatDatabricks(endpoint="databricks-qwen3-next-80b-a3b-instruct")
+
+prompt_template = "Write a concise summary of the following text: {text}"
+prompt = PromptTemplate(
+    input_variables=["text"],
+    template=prompt_template
+)
+
+summarizer = LLMChain(
+    llm=llm,
+    prompt=prompt
+)
+
+text_to_summarize = """
+Hi, I’m Sandeep Kumar Sharma, a seasoned IT professional with over 12 years of experience in the industry. I’ve successfully delivered 100+ corporate training sessions for leading global organizations, specializing in cloud technologies such as AWS, Microsoft Azure, and Databricks. My core expertise lies in designing and implementing robust cloud solutions, optimizing data platforms, and empowering teams through hands-on, practical learning. I’m deeply passionate about sharing knowledge, enabling digital transformation, and helping professionals and enterprises leverage the full potential of modern cloud and data technologies.
+"""
+
+summary = summarizer.run(text=text_to_summarize)
+print(summary)
